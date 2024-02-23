@@ -16,7 +16,8 @@ fetch(
   `https://api.openweathermap.org/data/2.5/forecast?q=moscow&appid=496eab7d5e444a0379912854e4b7a0a2`
 )
   .then(res => res = res.json())
-  .then(res => {weekWeather.value = res.list; fetchCode.value = res.cod});
+  // .then(res => {weekWeather.value = res.list; fetchCode.value = res.cod});
+  .then(res => {res.list != null ? weekWeather.value = res.list : null ; fetchCode.value = res.cod});
 const fetchCode = ref('')
 const weekWeather = ref("");
 const dayList = ref(["сегодня", "заватра", "послезавтра", "послепослезавтра"]);
@@ -39,7 +40,8 @@ async function search() {
       `https://api.openweathermap.org/data/2.5/forecast?q=${city.value}&appid=496eab7d5e444a0379912854e4b7a0a2&lang=ru`
     );
     const cooked = await raw.json();
-    weekWeather.value = cooked.list;
+    // weekWeather.value = cooked.list;
+    cooked.list != null ? weekWeather.value = cooked.list : null;
     fetchCode.value = cooked.cod
   } catch (e) {
 
